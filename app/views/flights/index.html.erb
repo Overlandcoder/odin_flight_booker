@@ -18,3 +18,7 @@
 
   <div><%= form.submit "Search" %></div>
 <% end %>
+
+<% @searched_flights.each do |flight| %>
+  <p><%= link_to "Flight", flight %></p>
+<% end %>
