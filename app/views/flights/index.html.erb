@@ -1,0 +1,20 @@
+<h2>Flights</h1>
+
+<%= form_with(model: @flight, url: flights_path, method: "get") do |form| %>
+  <h3>From</h3>
+  <%= select_tag "departure_airport_id", options_from_collection_for_select(@airports,
+        "id", "code") %>
+
+  <h3>To</h3>
+  <%= select_tag "arrival_airport_id", options_from_collection_for_select(@airports,
+        "id", "code") %>
+
+  <h3>Passengers</h3>
+  <%= form.select :passengers, options_for_select(1..4) %>
+
+  <h3>Date</h3>
+  <%= select_tag "flight_time", options_from_collection_for_select(@flights,
+        "departure_time", "departure_time") %>
+
+  <div><%= form.submit "Search" %></div>
+<% end %>
