@@ -2,7 +2,7 @@ class FlightsController < ApplicationController
   def index
     @airports = Airport.all
     @flights = Flight.all
-    @searched_flights = Flight.all.same_departure(query_params).same_arrival(query_params)
+    @searched_flights = Flight.user_search(query_params)
   end
 
   def new
@@ -27,6 +27,6 @@ class FlightsController < ApplicationController
 
   def query_params
     params.permit(:departure_airport_id, :arrival_airport_id,
-                                   :passengers, :flight_time, :commit)
+                                   :passengers, :departure_time, :commit)
   end
 end
