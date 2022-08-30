@@ -13,12 +13,13 @@
   <%= form.select :passengers, options_for_select(1..4) %>
 
   <h3>Date</h3>
-  <%= select_tag "flight_time", options_from_collection_for_select(@flights,
-        "departure_time", "departure_time") %>
+  <%= select_tag "departure_time", options_from_collection_for_select(@flights,
+        "departure_time", "departure_date_formatted") %>
 
   <div><%= form.submit "Search" %></div>
 <% end %>
 
 <% @searched_flights.each do |flight| %>
+  <h3><%= "#{@searched_flights.count} Flights Found" %></h3>
   <p><%= link_to "Flight", flight %></p>
 <% end %>
