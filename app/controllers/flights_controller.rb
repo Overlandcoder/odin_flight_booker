@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   def index
+    @airports = Airport.all
     @flights = Flight.all
   end
 
@@ -19,6 +20,7 @@ class FlightsController < ApplicationController
 
   private
   def flight_params
-    params.require(:flight).permit(:time, :duration)
+    params.require(:flight).permit(:departure_airport_id, :arrival_airport_id,
+                                   :date)
   end
 end
