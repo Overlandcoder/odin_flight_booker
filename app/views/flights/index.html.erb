@@ -17,6 +17,7 @@
         "departure_time", "departure_date_formatted") %>
 
   <br><%= form.submit "Search" %>
+<% end %>
 
   <% @searched_flights.each do |flight| %>
     <% fl_count = @searched_flights.count %>
@@ -32,4 +33,3 @@
       <%= form.submit "Book" %>
     <% end %>
   <% end %>
-<% end %>
