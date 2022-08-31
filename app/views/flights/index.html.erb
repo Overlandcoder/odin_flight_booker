@@ -16,10 +16,18 @@
   <%= select_tag "departure_time", options_from_collection_for_select(@flights,
         "departure_time", "departure_date_formatted") %>
 
-  <div><%= form.submit "Search" %></div>
-<% end %>
+  <br><%= form.submit "Search" %>
 
-<% @searched_flights.each do |flight| %>
-  <h3><%= "#{@searched_flights.count} Flights Found" %></h3>
-  <p><%= link_to "Flight", flight %></p>
+  <% @searched_flights.each do |flight| %>
+    <% fl_count = @searched_flights.count %>
+    <h3><%= "#{fl_count} Flight#{fl_count > 1 ? "s" : ""} Found" %></h3>
+  <% end %>
+
+  <%= form_with model: @flight do |form| %>
+    <%= form.collection_radio_buttons :flight_id, @searched_flights,
+          :id, :flight_info %>
+    <%= form.hidden_field :passengers, value: :passengers %>
+    <br><br>
+    <%= form.submit "Book" if @searched_flights.any? %>
+  <% end %>
 <% end %>
