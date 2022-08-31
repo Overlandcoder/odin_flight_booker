@@ -14,4 +14,8 @@ class Flight < ApplicationRecord
   def departure_date_formatted
     departure_time.strftime("%m/%d/%Y")
   end
+
+  def flight_info
+    "#{departure_airport.code} to #{arrival_airport.code} - #{departure_date_formatted}"
+  end
 end
