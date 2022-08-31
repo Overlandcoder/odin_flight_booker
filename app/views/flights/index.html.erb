@@ -23,11 +23,13 @@
     <h3><%= "#{fl_count} Flight#{fl_count > 1 ? "s" : ""} Found" %></h3>
   <% end %>
 
-  <%= form_with model: @flight do |form| %>
+  <%= form_with(model: @flight, url: new_booking_path) do |form| %>
     <%= form.collection_radio_buttons :flight_id, @searched_flights,
           :id, :flight_info %>
     <%= form.hidden_field :passengers, value: :passengers %>
     <br><br>
-    <%= form.submit "Book" if @searched_flights.any? %>
+    <% if @searched_flights.any? %>
+      <%= form.submit "Book" %>
+    <% end %>
   <% end %>
 <% end %>
