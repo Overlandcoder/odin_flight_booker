@@ -1,0 +1,21 @@
+<h2>Purchase Flight</h2>
+
+<%= form_with model: @booking do |form| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being created:</h2>
+      <ul>
+        <% @booking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= params[:departure_airport_id] %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+<% end %>
