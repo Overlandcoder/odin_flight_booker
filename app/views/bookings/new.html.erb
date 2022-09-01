@@ -12,10 +12,15 @@
     </div>
   <% end %>
 
-  <%= params[:departure_airport_id] %>
+  <%= "#{@flight.departure_airport.code} to #{@flight.arrival_airport.code}" %><br>
+  <%= @flight.departure_time.strftime("%m/%d/%Y - %H:%M") %><br>
+  <%= "Flight ID: #{@flight.id}" %><br><br>
 
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.label :email %>
-  <%= form.text_field :email %>
+  <% (1..@passengers.to_i).each do |passenger_number| %>
+    <h3><%= "Passenger #{passenger_number} Info" %></h3>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  <% end %>
 <% end %>
