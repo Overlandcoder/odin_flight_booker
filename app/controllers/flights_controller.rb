@@ -3,6 +3,7 @@ class FlightsController < ApplicationController
     @airports = Airport.all
     @flights = Flight.all
     @searched_flights = Flight.user_search(query_params)
+    @num_of_passengers = query_params[:passengers]
   end
 
   def new
