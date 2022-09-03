@@ -1,0 +1,12 @@
+<h1>Flight Info</h1>
+<h2><%= "#{@booking.flight.departure_airport.code} to #{@booking.flight.arrival_airport.code}" %></h2>
+<b>Departure Date: </b><%= @booking.flight.departure_time.strftime("%B %d, %Y") %><br>
+<b>Departure Time: </b><%= @booking.flight.departure_time.strftime("%H:%M") %><br>
+<b>Flight Duration: </b><%= "#{@booking.flight.duration.to_i} hours" %>
+
+ 
+<% @booking.passengers.each_with_index do |passenger, passenger_number| %>
+  <h3><%= "Passenger #{passenger_number + 1}" %></h3>
+  <b>Name: </b><%= passenger.name.capitalize %>
+  <b>Email: </b><%= passenger.email.capitalize %>
+<% end %>
