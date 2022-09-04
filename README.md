@@ -1,24 +1,5 @@
-# README
+# Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is for the Flight Booker project from The Odin Project's Ruby on Rails curriculum. Find it at http://www.theodinproject.com.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The goal here is to practice building advanced forms by implementing a basic checkout process for booking a one-way flight.
