@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       redirect_to @booking
+      PassengerMailer.with(booking: @booking).booking_email.deliver_later
     else
       render :new, status: :unprocessable_entity
     end
