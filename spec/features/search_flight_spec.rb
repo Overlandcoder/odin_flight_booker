@@ -5,21 +5,23 @@ RSpec.describe 'Searching for a flight', type: :feature do
   let!(:lgw) { FactoryBot.create(:airport, code: 'LGW') }
   let!(:flight1) { FactoryBot.create(:flight, departure_airport: yyz, arrival_airport: lgw) }
 
-  context '1 available flight' do
-    before do
-      visit root_path
-      expect(page).to have_css 'h3', text: 'From'
-      page.select 'YYZ', from: 'departure_airport_id'
-      page.select 'LGW', from: 'arrival_airport_id'
-      page.select '2', from: 'passengers'
-      page.select '09/21/2022', from: 'departure_time'
-      click_on 'Search'
-    end
+  before do
+    visit root_path
+    expect(page).to have_css 'h3', text: 'From'
+    page.select 'YYZ', from: 'departure_airport_id'
+    page.select 'LGW', from: 'arrival_airport_id'
+    page.select '2', from: 'passengers'
+    page.select '09/21/2022', from: 'departure_time'
+    click_on 'Search'
+  end
 
+  context 'when searching for a flight' do
     it 'finds 1 available flight' do
       expect(page).to have_content('1 Flight Found')
     end
+  end
 
+  context 'when booking a flight' do
     before do
       choose('YYZ to LGW - 09/21/2022')
       click_on 'Book'
