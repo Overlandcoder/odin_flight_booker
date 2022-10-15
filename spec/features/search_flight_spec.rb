@@ -1,17 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe 'Searching for a flight', type: :feature do
-  let!(:yyz) { FactoryBot.create(:airport, code: 'YYZ') }
-  let!(:lgw) { FactoryBot.create(:airport, code: 'LGW') }
-  let!(:flight1) { FactoryBot.create(:flight, departure_airport: yyz, arrival_airport: lgw) }
+  let!(:toronto) { FactoryBot.create(:airport, code: 'YYZ', city: 'Toronto') }
+  let!(:london) { FactoryBot.create(:airport, code: 'LGW', city: 'London') }
+  let!(:flight1) { 
+                  FactoryBot.create(:flight, departure_airport: toronto, 
+                                    arrival_airport: london)
+                 }
 
   before do
     visit root_path
     expect(page).to have_css 'h3', text: 'From'
-    page.select 'YYZ', from: 'departure_airport_id'
-    page.select 'LGW', from: 'arrival_airport_id'
+    page.select 'Toronto', from: 'departure_airport_id'
+    page.select 'London', from: 'arrival_airport_id'
     page.select '2', from: 'passengers'
-    page.select '09/21/2022', from: 'departure_time'
+    tomorrow = ((Date.today) + 1).strftime("%m/%d/%Y")
+    puts flight1.departure_time
+    page.select tomorrow, from: 'departure_time'
     click_on 'Search'
   end
 
@@ -23,7 +28,7 @@ RSpec.describe 'Searching for a flight', type: :feature do
 
   context 'when booking a flight' do
     before do
-      choose('YYZ to LGW - 09/21/2022')
+      choose("Toronto to London - #{((Date.today) + 1).strftime("%m/%d/%Y %I:%M %P")}")
       click_on 'Book'
     end
 

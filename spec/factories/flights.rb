@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :flight do
-    departure_time { "2022-09-21 22:01:21" }
+    departure_time { Date.today + 1 }
     duration { 1.5 }
 
     association :departure_airport, factory: :airport
