@@ -10,18 +10,14 @@ class Flight < ApplicationRecord
   def self.user_search(query_params)
     where(departure_airport_id: query_params[:departure_airport_id],
           arrival_airport_id: query_params[:arrival_airport_id],
-          departure_time: query_params[:departure_time])
+          departure_date: query_params[:departure_date])
   end
 
-  def departure_date_formatted
-    departure_time.strftime("%m/%d/%Y")
-  end
-
-  def departure_datetime_formatted
-    departure_time.strftime("%m/%d/%Y %I:%M %P")
+  def departure_time_formatted
+    departure_time.strftime("%I:%M %P")
   end
 
   def flight_info
-    "#{departure_airport.city} to #{arrival_airport.city} - #{departure_datetime_formatted}"
+    "#{departure_airport.city} to #{arrival_airport.city} - #{departure_date} #{departure_time_formatted}"
   end
 end
