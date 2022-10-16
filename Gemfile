@@ -51,6 +51,8 @@ gem "letter_opener", group: :development
 
 gem 'cssbundling-rails'
 
+gem 'faker'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -69,7 +71,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'webdrivers'
-  gem 'faker'
 end
 
 group :development do
