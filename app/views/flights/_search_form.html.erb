@@ -3,23 +3,23 @@
 
   <div class="row">
     <div class="col-lg-3">
-      <h3>From</h3>
+      <h3>Departure</h3>
       <%= select_tag "departure_airport_id",
                       options_from_collection_for_select(@airports, "id", "city"),
-                      class: "form-select" %>
+                      include_blank: "From", class: "form-select" %>
     </div>
 
     <div class="col-lg-3">
-      <h3>To</h3>
+      <h3>Arrival</h3>
       <%= select_tag "arrival_airport_id",
                       options_from_collection_for_select(@airports, "id", "city"),
-                      class: "form-select" %>
+                      include_blank: "To", class: "form-select" %>
     </div>
 
     <div class="col-lg-3">
-      <h3>Date (yyyy-mm-dd)</h3>
+      <h3>Date</h3>
       <%= select_tag "departure_date", options_for_select(@days),
-                      class: "form-select" %>
+                      include_blank: "Departing", class: "form-select" %>
     </div>
 
     <div class="col-lg-3">
