@@ -1,12 +1,12 @@
 <div class="container">
-  <h2>Flights</h1>
+    <h1 class="fw-bold">Book a Flight</h1>
 
-  <%= render partial: "search_form" %>
+    <%= render partial: "search_form" %>
 
-  <% @searched_flights.each do |flight| %>
-    <% fl_count = @searched_flights.count %>
-    <h3><%= "#{fl_count} Flight#{fl_count > 1 ? "s" : ""} Found" %></h3>
-  <% end %>
+    <% @searched_flights.each do |flight| %>
+      <% fl_count = @searched_flights.count %>
+      <h3><%= "#{fl_count} Flight#{fl_count > 1 ? "s" : ""} Found" %></h3>
+    <% end %>
 
-  <%= render partial: "selection_form" %>
+    <%= render partial: "selection_form" %>
 </div>
