@@ -14,9 +14,8 @@ RSpec.describe 'Searching for a flight', type: :feature do
     page.select 'Toronto', from: 'departure_airport_id'
     page.select 'London', from: 'arrival_airport_id'
     page.select '2', from: 'passengers'
-    tomorrow = ((Date.today) + 1).strftime("%m/%d/%Y")
-    puts flight1.departure_time
-    page.select tomorrow, from: 'departure_time'
+    tomorrow = ((Date.today) + 1).strftime("%Y-%m-%d")
+    page.select tomorrow, from: 'departure_date'
     click_on 'Search'
   end
 
@@ -28,7 +27,7 @@ RSpec.describe 'Searching for a flight', type: :feature do
 
   context 'when booking a flight' do
     before do
-      choose("Toronto to London - #{((Date.today) + 1).strftime("%m/%d/%Y %I:%M %P")}")
+      choose("Toronto to London - #{flight1.departure_date} #{flight1.departure_time_formatted}")
       click_on 'Book'
     end
 
