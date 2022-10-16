@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :flight do
-    departure_time { Date.today + 1 }
+    day = Date.today + 1
+    departure_date { day }
+    departure_time { Faker::Time.between_dates(from: day, to: day, period: :all) }
     duration { 1.5 }
 
     association :departure_airport, factory: :airport

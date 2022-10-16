@@ -8,7 +8,8 @@ class FlightGenerator < ApplicationService
       airport1 = Airport.find_by(code: pair[0])
       airport2 = Airport.find_by(code: pair[1])
 
-      Flight.create(departure_time: random_time, duration: rand(3..15),
+      Flight.create(departure_date: @date, duration: rand(3..15),
+                    departure_time: random_time,
                     departure_airport_id: airport1.id,
                     arrival_airport_id: airport2.id)
     end
@@ -20,6 +21,6 @@ class FlightGenerator < ApplicationService
 
   def airport_pairs
     ["YYZ", "LGW", "JFK", "ATL", "DFW",
-    "DEN", "ORD", "LAS", "PHX", "MIA"].permutation(2)
+     "DEN", "ORD", "LAS", "PHX", "MIA"].permutation(2)
   end
 end
