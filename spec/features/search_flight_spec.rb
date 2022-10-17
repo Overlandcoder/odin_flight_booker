@@ -80,13 +80,13 @@ RSpec.describe 'Searching for a flight', type: :feature do
       expect(page).not_to have_content 'Passenger 3 Info'
     end
 
-    it 'is able to book the flight' do
+    it 'books the flight' do
       fill_in 'booking_passengers_attributes_0_name', with: Faker::Name.name
       fill_in 'booking_passengers_attributes_0_email', with: Faker::Internet.email
       fill_in 'booking_passengers_attributes_1_name', with: Faker::Name.name
       fill_in 'booking_passengers_attributes_1_email', with: Faker::Internet.email
       click_on 'Purchase Flight'
-      expect(page).to have_content('Flight Info')
+      expect(page).to have_content('Your flight has been booked!')
     end
   end
 end
