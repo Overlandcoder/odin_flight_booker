@@ -85,7 +85,7 @@ RSpec.describe 'Searching for a flight', type: :feature do
       fill_in 'booking_passengers_attributes_0_email', with: Faker::Internet.email
       fill_in 'booking_passengers_attributes_1_name', with: Faker::Name.name
       fill_in 'booking_passengers_attributes_1_email', with: Faker::Internet.email
-      click_on 'Book'
+      click_on 'Purchase Flight'
       expect(page).to have_content('Flight Info')
     end
   end

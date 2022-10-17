@@ -1,5 +1,3 @@
-<h2>Purchase Flight</h2>
-
 <%= form_with model: @booking do |form| %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
@@ -12,19 +10,40 @@
     </div>
   <% end %>
 
-  <b><%= "#{@flight.departure_airport.code} to #{@flight.arrival_airport.code}" %></b><br>
-  <%= @flight.departure_time.strftime("%m/%d/%Y - %H:%M") %><br>
-  <%= "Flight ID: #{@flight.id}" %><br><br>
+  <div class="container mt-5 p-4 rounded" style="max-width: 500px">
+    <div class="p-3 border border-success rounded">
+      <div>
+        <h4>
+          <%= "#{@flight.departure_airport.city} (#{@flight.departure_airport.code}) to
+              #{@flight.arrival_airport.city} (#{@flight.arrival_airport.code})" %>
+        </h4>
+      </div>
+      <div>
+        <%= "Departure: #{@flight.departure_date_formatted} - #{@flight.departure_time_formatted}" %>
+      </div>
+      <div>
+        <%= "Flight Number: #{@flight.id}" %>
+      </div>
+    </div>
 
-  <% (1..@num_of_passengers.to_i).each do |passenger_number| %>
-    <h4><%= "Passenger #{passenger_number} Info" %></h4>
-    <%= form.fields_for :passengers do |sub_form|  %>
-      <%= form.hidden_field :flight_id, value: @flight.id %>
-      <%= sub_form.label :name %>
-      <%= sub_form.text_field :name %>
-      <%= sub_form.label :email %>
-      <%= sub_form.text_field :email %>
+    <hr>
+    <% (1..@num_of_passengers.to_i).each do |passenger_number| %>
+      <div class="mt-4 mb-4 p-3 bg-light rounded">
+        <h4><%= "Passenger #{passenger_number} Information" %></h4>
+        <%= form.fields_for :passengers do |sub_form|  %>
+          <%= form.hidden_field :flight_id, value: @flight.id %>
+          <div>
+            <%= sub_form.label :name %>
+            <%= sub_form.text_field :name, class: "form-control" %>
+          </div>
+          <div>
+            <%= sub_form.label :email %>
+            <%= sub_form.text_field :email, class: "form-control" %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
-  <br><br><%= form.submit "Book" %>
+
+    <%= form.submit "Purchase Flight", class: "btn btn-lg btn-info text-white fw-bold" %>
+  </div>
 <% end %>
