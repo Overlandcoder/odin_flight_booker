@@ -7,14 +7,15 @@ class FlightGenerator < ApplicationService
     airport_pairs.each do |pair|
       airport1 = Airport.find_by(code: pair[0])
       airport2 = Airport.find_by(code: pair[1])
+      random_duration = rand(3..10)
 
-      create_flights(morning_time, airport1, airport2)
-      create_flights(afternoon_time, airport1, airport2)
+      create_flights(morning_time, random_duration, airport1, airport2)
+      create_flights(afternoon_time, random_duration, airport1, airport2)
     end
   end
 
-  def create_flights(time, airport1, airport2)
-    Flight.create(departure_date: @date, duration: rand(3..10),
+  def create_flights(time, duration, airport1, airport2)
+    Flight.create(departure_date: @date, duration: duration,
                   departure_time: time,
                   departure_airport_id: airport1.id,
                   arrival_airport_id: airport2.id)
