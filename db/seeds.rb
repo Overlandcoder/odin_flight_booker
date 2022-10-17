@@ -8,10 +8,9 @@
 
 airports = Airport.create([
   { code: "YYZ", city: "Toronto" }, { code: "LGW", city: "London" },
-  { code: "JFK", city: "New York" }, { code: "ATL", city: "Atlanta" },
-  { code: "DFW", city: "Dallas-Fort Worth" }, { code: "DEN", city: "Denver" },
+  { code: "ATL", city: "Atlanta" }, { code: "DFW", city: "Dallas-Fort Worth" },
   { code: "ORD", city: "Chicago" }, { code: "LAS", city: "Las Vegas" },
-  { code: "PHX", city: "Phoenix" }, { code: "MIA", city: "Miami" },
+  { code: "PHX", city: "Phoenix" }, { code: "MIA", city: "Miami" }
   ])
 
 today = Date.today

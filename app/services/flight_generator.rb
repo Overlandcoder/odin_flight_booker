@@ -20,7 +20,7 @@ class FlightGenerator < ApplicationService
   end
 
   def airport_pairs
-    ["YYZ", "LGW", "JFK", "ATL", "DFW",
-     "DEN", "ORD", "LAS", "PHX", "MIA"].permutation(2)
+    ["YYZ", "LGW", "ATL", "DFW",
+     "ORD", "LAS", "PHX", "MIA"].permutation(2)
   end
 end
