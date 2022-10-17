@@ -13,6 +13,10 @@ class Flight < ApplicationRecord
           departure_date: query_params[:departure_date])
   end
 
+  def departure_date_formatted
+    departure_date.strftime("%B %d, %Y")
+  end
+
   def departure_time_formatted
     departure_time.strftime("%l:%M %P")
   end

@@ -4,21 +4,38 @@
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
       <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
 
-      <div class="container mt-4 mb-3">
-        <h4 class="fw-bold">
-          <%= "#{pluralize(@searched_flights.count, "flight")}
-              matched your search:" %>
+      <div class="container mt-4 mb-3 p-3 bg-light rounded">
+        <h4 class="fw-bold mb-3">
+          <%= "Search results" %>
         </h4>
+        <h5>
+          <%= "#{pluralize(@searched_flights.count, "flight")} available
+               for #{@searched_flights.first.departure_date_formatted}" %>
+        </h5>
 
         <% @searched_flights.each do |flight| %>
-          <div class="form-check">
-            <%= form.radio_button :flight_id, flight.id, class: "form-check-input" %>
-            <%= form.label "flight_id_#{flight.id}", flight.flight_info,
-                            class: "form-check-label"%>
+          <div class="d-flex mt-4 mb-4 align-items-center">
+            <div class="form-check">
+              <%= form.radio_button :flight_id, flight.id,
+                                    class: "form-check-input" %>
+            </div>
+
+            <div class="d-flex ms-2 p-2 align-items-center border bg-white rounded shadow-sm">
+                  <%= "#{flight.departure_airport.city}
+                       (#{flight.departure_airport.code}) to
+                       #{flight.arrival_airport.city}
+                       (#{flight.arrival_airport.code})" %>
+            </div>
+            <div class="d-flex ms-2 p-2 align-items-center border bg-white rounded shadow-sm">
+                  <%= "Departure: #{flight.departure_time_formatted}" %>
+            </div>
+            <div class="d-flex ms-2 p-2 align-items-center border bg-white rounded shadow-sm">
+                  <%= "Duration: #{flight.duration.to_i} hours" %>
+            </div>
           </div>
         <% end %>
-        </div>
-        <%= form.submit "Book", class: "btn btn-warning fw-bold text-white ps-5 pe-5" %>
+
+        <%= form.submit "Book", class: "btn btn-lg btn-warning fw-bold text-white ps-5 pe-5" %>
       </div>
     <% end %>
   <% else %>
