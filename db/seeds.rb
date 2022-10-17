@@ -14,7 +14,7 @@ airports = Airport.create([
   ])
 
 today = Date.today
-month_from_today = Date.today + 30
+month_from_today = Date.today + 14
 
 (today..month_from_today).each do |date|
   FlightGenerator.call(date)
