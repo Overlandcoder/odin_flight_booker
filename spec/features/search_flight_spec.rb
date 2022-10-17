@@ -18,15 +18,15 @@ RSpec.describe 'Searching for a flight', type: :feature do
     click_on 'Search'
   end
 
-  context 'when searching for a flight' do
+  context 'when 1 flight available' do
     it 'finds 1 available flight' do
-      expect(page).to have_content('1 flight matched your search:')
+      expect(page).to have_content('1 flight available')
     end
   end
 
   context 'when booking a flight' do
     before do
-      choose("Toronto to London - #{flight1.departure_date} #{flight1.departure_time_formatted}")
+      choose("flight_id_#{flight1.id}")
       click_on 'Book'
     end
 
