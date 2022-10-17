@@ -4,20 +4,9 @@ class FlightsController < ApplicationController
     @flights = Flight.all
     @searched_flights = Flight.user_search(query_params)
     @num_of_passengers = query_params[:passengers]
-  end
-
-  def new
-    @flight = Flight.new
-  end
-
-  def create
-    @flight = Flight.new(flight_params)
-
-    if @flight.save
-      redirect_to @flight
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @departure_airport = Airport.where(id: query_params[:departure_airport_id])
+    @arrival_airport = Airport.where(id: query_params[:arrival_airport_id])
+    @departure_date = query_params[:departure_date]
   end
 
   private
