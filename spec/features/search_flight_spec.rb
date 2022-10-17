@@ -3,22 +3,57 @@ require 'rails_helper'
 RSpec.describe 'Searching for a flight', type: :feature do
   let!(:toronto) { FactoryBot.create(:airport, code: 'YYZ', city: 'Toronto') }
   let!(:london) { FactoryBot.create(:airport, code: 'LGW', city: 'London') }
+  tomorrows_time = Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 1, period: :all)
+  todays_time = Faker::Time.between_dates(from: Date.today, to: Date.today, period: :all)
   let!(:flight1) { 
+                  FactoryBot.create(:flight, departure_airport: toronto,
+                                    arrival_airport: london,
+                                    departure_time: tomorrows_time,
+                                    departure_date: Date.today + 1
+                                   )
+                 }
+  let!(:flight2) {
+                  FactoryBot.create(:flight, departure_airport: toronto,
+                                    arrival_airport: london,
+                                    departure_time: tomorrows_time,
+                                    departure_date: Date.today + 1
+                                   )
+                 }
+  let!(:flight3) {
                   FactoryBot.create(:flight, departure_airport: toronto, 
-                                    arrival_airport: london)
+                                    arrival_airport: london,
+                                    departure_time: todays_time,
+                                    departure_date: Date.today
+                                   )
                  }
 
-  before do
-    visit root_path
-    page.select 'Toronto', from: 'departure_airport_id'
-    page.select 'London', from: 'arrival_airport_id'
-    page.select '2', from: 'passengers'
-    tomorrow = ((Date.today) + 1).strftime("%Y-%m-%d")
-    page.select tomorrow, from: 'departure_date'
-    click_on 'Search'
+  context 'when 2 flights available' do
+    before do
+      visit root_path
+      page.select 'Toronto', from: 'departure_airport_id'
+      page.select 'London', from: 'arrival_airport_id'
+      page.select '2', from: 'passengers'
+      tomorrow = ((Date.today) + 1).strftime("%Y-%m-%d")
+      page.select tomorrow, from: 'departure_date'
+      click_on 'Search'
+    end
+
+    it 'finds 2 available flights' do
+      expect(page).to have_content('2 flights available')
+    end
   end
 
   context 'when 1 flight available' do
+    before do
+      visit root_path
+      page.select 'Toronto', from: 'departure_airport_id'
+      page.select 'London', from: 'arrival_airport_id'
+      page.select '2', from: 'passengers'
+      today = (Date.today).strftime("%Y-%m-%d")
+      page.select today, from: 'departure_date'
+      click_on 'Search'
+    end
+
     it 'finds 1 available flight' do
       expect(page).to have_content('1 flight available')
     end
@@ -26,6 +61,13 @@ RSpec.describe 'Searching for a flight', type: :feature do
 
   context 'when booking a flight' do
     before do
+      visit root_path
+      page.select 'Toronto', from: 'departure_airport_id'
+      page.select 'London', from: 'arrival_airport_id'
+      page.select '2', from: 'passengers'
+      tomorrow = ((Date.today) + 1).strftime("%Y-%m-%d")
+      page.select tomorrow, from: 'departure_date'
+      click_on 'Search'
       choose("flight_id_#{flight1.id}")
       click_on 'Book'
     end
