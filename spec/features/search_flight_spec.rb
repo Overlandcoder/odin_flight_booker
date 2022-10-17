@@ -10,7 +10,6 @@ RSpec.describe 'Searching for a flight', type: :feature do
 
   before do
     visit root_path
-    expect(page).to have_css 'h3', text: 'From'
     page.select 'Toronto', from: 'departure_airport_id'
     page.select 'London', from: 'arrival_airport_id'
     page.select '2', from: 'passengers'
@@ -21,7 +20,7 @@ RSpec.describe 'Searching for a flight', type: :feature do
 
   context 'when searching for a flight' do
     it 'finds 1 available flight' do
-      expect(page).to have_content('1 Flight Found')
+      expect(page).to have_content('1 flight matched your search:')
     end
   end
 
