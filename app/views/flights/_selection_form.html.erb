@@ -1,22 +1,24 @@
 <% unless @departure_airport.blank? && @arrival_airport.blank? && @departure_date.blank? %>
+  <hr class="mt-4">
   <% if @searched_flights.present? %>
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
-      <div class="container mt-4">
+      <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
+
+      <div class="container mt-4 mb-3">
         <h4 class="fw-bold">
           <%= "#{pluralize(@searched_flights.count, "flight")}
               matched your search:" %>
         </h4>
 
-        <div class="form-check">
-          <%= form.collection_radio_buttons :flight_id, @searched_flights,
-                                            :id, :flight_info,
-                                            class: "form-check-input",
-                                            name: "flexRadioDefault" %>
+        <% @searched_flights.each do |flight| %>
+          <div class="form-check">
+            <%= form.radio_button :flight_id, flight.id, class: "form-check-input" %>
+            <%= form.label "flight_id_#{flight.id}", flight.flight_info,
+                            class: "form-check-label"%>
+          </div>
+        <% end %>
         </div>
-
-        <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
-
-        <%= form.submit "Book" %>
+        <%= form.submit "Book", class: "btn btn-success text-white ps-5 pe-5" %>
       </div>
     <% end %>
   <% else %>
