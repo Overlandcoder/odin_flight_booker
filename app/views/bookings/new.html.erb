@@ -22,6 +22,9 @@
         <%= "Departure: #{@flight.departure_date_formatted} - #{@flight.departure_time_formatted}" %>
       </div>
       <div>
+        <%= "Duration: #{@flight.duration.to_i} hours" %>
+      </div>
+      <div>
         <%= "Flight Number: #{@flight.id}" %>
       </div>
     </div>
@@ -44,6 +47,6 @@
       </div>
     <% end %>
 
-    <%= form.submit "Purchase Flight", class: "btn btn-lg btn-info text-white fw-bold" %>
+    <%= form.submit "Purchase Flight", class: "btn btn-lg btn-info w-100 text-white fw-bold" %>
   </div>
 <% end %>
