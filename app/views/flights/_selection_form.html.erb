@@ -1,10 +1,10 @@
 <% unless @departure_airport.blank? && @arrival_airport.blank? && @departure_date.blank? %>
-  <hr class="mt-4">
+  <hr class="mt-4" style="max-width: 900px">
   <% if @searched_flights.present? %>
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
       <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
 
-      <div class="container mt-4 mb-3 p-3 bg-light rounded">
+      <div class="mt-4 mb-3 p-4 bg-light rounded" style="max-width: 900px">
         <h4 class="fw-bold mb-3">
           <%= "Search results" %>
         </h4>
@@ -17,7 +17,7 @@
           <div class="d-flex mt-4 mb-4 align-items-center">
             <div class="form-check">
               <%= form.radio_button :flight_id, flight.id,
-                                    class: "form-check-input" %>
+                                    class: "form-check-input border-secondary" %>
             </div>
 
             <div class="d-flex ms-2 p-2 align-items-center border bg-white rounded shadow-sm">
@@ -35,7 +35,7 @@
           </div>
         <% end %>
 
-        <%= form.submit "Book", class: "btn btn-lg btn-warning fw-bold text-white ps-5 pe-5" %>
+        <%= form.submit "Book", class: "btn btn-lg text-dark btn-warning fw-bold ps-5 pe-5" %>
       </div>
     <% end %>
   <% else %>
