@@ -1,10 +1,10 @@
 <% unless @departure_airport.blank? && @arrival_airport.blank? && @departure_date.blank? %>
-  <hr class="mt-4" style="max-width: 900px">
+  <hr class="mt-4" style="max-width: 820px">
   <% if @searched_flights.present? %>
     <%= form_with(model: @flight, url: new_booking_path, method: "get") do |form| %>
       <%= form.hidden_field :num_of_passengers, value: @num_of_passengers %>
 
-      <div class="mt-4 mb-3 p-4 bg-light rounded" style="max-width: 900px">
+      <div class="mt-4 mb-3 p-4 bg-light rounded" style="max-width: 820px">
         <h4 class="fw-bold mb-3">
           <%= "Search results" %>
         </h4>
