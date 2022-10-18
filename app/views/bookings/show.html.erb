@@ -21,7 +21,12 @@
 
     <% @booking.passengers.each_with_index do |passenger, passenger_number| %>
       <div class="mt-4 p-3 bg-light border rounded">
-        <h4><%= "Passenger #{passenger_number + 1} Information" %></h4>
+        <% if passenger_number > 1%>
+          <h4><%= "Passenger #{passenger_number + 1} Information" %></h4>
+        <% else %>
+          <h4><%= "Passenger Information" %></h4>
+        <% end %>
+
         <hr class="mt-0">
 
         <div class="mb-3">
