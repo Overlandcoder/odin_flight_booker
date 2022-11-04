@@ -30,8 +30,8 @@ Then, clone this repo, `cd` into the project's root directory and run:
 bundle install
 bin/rails server
 ```
-Finally, visit http://localhost:3000/ to view the application locally.
+Finally, visit http://localhost:3000/ to view the application.
 
 ## Possible Improvements
-
-## Reflections
+- Use realistic flight durations instead of random ones
+- Use Stimulus to allow addition/removal of passengers
