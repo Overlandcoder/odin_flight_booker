@@ -4,7 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Your flight has been booked!</h1>
-    <h2><%= @booking.flight.departure_airport.code %></h2>
+    <p>Your flight has been booked!</p>
+    <p><%= "#{@booking.flight.departure_airport.code} to #{@booking.flight.arrival_airport.code}" %></p>
+    <p><%= "Date: #{@booking.flight.departure_date_formatted}"%></p>
+    <p><%= "Time: #{@booking.flight.departure_time_formatted}"%></p>
+    <p><%= "Duration: #{@booking.flight.duration.to_i} hours"%></p>
   </body>
 </html>
