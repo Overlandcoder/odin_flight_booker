@@ -15,9 +15,11 @@ View a live version [on Heroku](https://quiet-dusk-24650.herokuapp.com/).
 - Tested with RSpec and Capybara (89% code coverage)
 
 ## How to Use
-[Click here to view a live version on Heroku.](https://quiet-dusk-24650.herokuapp.com/)
+#### Live Version
+[Click here to view a live version on Heroku](https://quiet-dusk-24650.herokuapp.com/).
 - **Note:** Due to being on Heroku's free plan, initial load time may be longer than expected
 
+#### Local Version
 To run locally, you must have the following prerequisites:
 ```
 Ruby >= 3.1.2
